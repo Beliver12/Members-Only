@@ -19,7 +19,7 @@ const pool = new Pool({
 
 
 const app = express();
-const session = require('express-session')
+//const session = require('express-session')
 const MemoryStore = require('memorystore')(session)
 const membersRouter = require("./routes/membersRouter")
 app.use(express.static(assetsPath));
