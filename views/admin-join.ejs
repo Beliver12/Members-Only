@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Join As Member</h1>
+  <%- include("errors.ejs") %>
+  <form action="/admin-join" method="POST">
+    <label for="adminPassword">Type in secret Password to Join as Admin!</label>
+    <input id="adminPassword" name="adminPassword" type="password" />
+    <button>Join as Admin</button>
+  </form>
+</body>
+</html>

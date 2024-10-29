@@ -2,14 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/style.css">
   <title></title>
 </head>
 <body>
   <% if (locals.user) {%>
-    <h1>WELCOME BACK <%= user.username %></h1>
-    <a href="/log-out">LOG OUT</a>
+    
+    <% if (locals.user.rolestatus === null || locals.user.rolestatus === 0) {%>
+      <h1>WELCOME BACK <%= user.username %></h1>
+      <h2>Status: <strong>Guest</strong></h2>
+      <div id="links">
+        <a href="/member-join">Join As Member</a>
+        <a href="/admin-join">Join As Admin</a>
+      </div>
+
+      <% } else if (locals.user.rolestatus === 1) { %>
+        <h1>WELCOME BACK <%= user.username %></h1>
+        <h2>Status: <strong>Member</strong></h2>
+          <a href="/admin-join">Join As Admin</a>
+        
+
+        <%} else { %>
+          <h1>WELCOME BACK <%= user.username %></h1>
+          <h2>Status: <strong>Admin</strong></h2>
+        <%}%>
+
+    <div id="links">
+      <a href="/log-out">LOG OUT</a>
+      <a href="/create-message">Create Message</a>
+      <a href="/messages">Messages</a>
+    </div>
   <% } else { %>
     <h1>please log in</h1>
+    <%- include("errors.ejs") %>
+    <% if (locals.messages) {%>
+    <p><%= messages[0] %></p>
+    <%}%>
     <form action="/log-in" method="POST">
       <label for="username">Username</label>
       <input id="username" name="username" placeholder="username" type="text" />
@@ -17,8 +45,9 @@
       <input id="password" name="password" type="password" />
       <button>Log In</button>
     </form>
+    <a href="/sign-up">Sign-up</a>
   <%}%>
-  <a href="/sign-up">Sign-up</a>
+  
 </body>
 </html>
 

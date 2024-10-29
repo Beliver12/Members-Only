@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body id="create-message-body">
+  <h1>Create Message</h1>
+  <%- include("errors.ejs") %>
+  <form id="create-message" action="/create-message" method="POST">
+    <label for="message">Write Message</label>
+    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+    <button>Submit</button>
+  </form>
+</body>
+</html>
