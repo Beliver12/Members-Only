@@ -19,6 +19,8 @@ const pool = new Pool({
 
 
 const app = express();
+const session = require('express-session')
+const MemoryStore = require('memorystore')(session)
 const membersRouter = require("./routes/membersRouter")
 app.use(express.static(assetsPath));
 app.set("views", __dirname + '/views');
@@ -27,7 +29,9 @@ app.set("view engine", "ejs");
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false,  
                      cookie: {
                       maxAge: 1000 * 60 * 60 * 24
-                     } }));
+                     }, store: new MemoryStore({
+                      checkPeriod: 1000 * 60 * 60 * 24
+                     }), }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", membersRouter);
