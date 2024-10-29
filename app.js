@@ -11,10 +11,9 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const assetsPath = path.join(__dirname, "public");
 
-
+const connectionString = "postgresql://postgres:jqRAlVaZRssGUpxYuMNztXDiMmQecreN@autorack.proxy.rlwy.net:21963/railway";
 const pool = new Pool({
-    connectionString: process.env.CONNECTION_STRING,
-    dbHost: process.env.DB_HOST
+    connectionString,
 });
 
 
